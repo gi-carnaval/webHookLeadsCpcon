@@ -28,8 +28,14 @@ jobs:
           run: npx tsc
 
         - name: Deploy to Server
-          env:
-            SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          run: |
-            ssh-agent bash -c "ssh-add - <<< '${SSH_PRIVATE_KEY}' && \
-            ssh -o StrictHostKeyChecking=no gi.carnaval@hotmail.com 'cd /var/www/my-server/webHookLeadsCpcon && git pull && pm2 restart 0"
+          uses: appleboy/ssh-action@v1.2.0
+          with:
+            host: ${{ secrets.HOST }}       # IP ou domínio do servidor
+            username: ${{ secrets.SERVER_USER }}   # Usuário do servidor
+            key: ${{ secrets.SSH_PRIVATE_KEY }}     # Chave privada para acessar o servidor
+            script: |
+              cd /var/www/my-server/webHookLeadsCpcon
+              git pull
+              npm install
+              npx tsc
+              pm2 restart 0 --watch
