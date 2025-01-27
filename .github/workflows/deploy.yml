@@ -32,4 +32,4 @@ jobs:
             SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           run: |
             ssh-agent bash -c "ssh-add - <<< '${SSH_PRIVATE_KEY}' && \
-            ssh -o StrictHostKeyChecking=no root@167.88.39.32 'cd /var/www/meu-servidor && git pull && npm install && pm2 restart all'"
+            ssh -o StrictHostKeyChecking=no root@167.88.39.32 'cd /var/www/my-server && git pull && npm install && pm2 restart all'"
