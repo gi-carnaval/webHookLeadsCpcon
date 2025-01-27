@@ -30,7 +30,7 @@ jobs:
         - name: Deploy to Server
           uses: appleboy/ssh-action@v1.2.0
           with:
-            host: ${{ secrets.HOST }}       # IP ou domínio do servidor
+            host: ${{ secrets.SERVER_HOST }}       # IP ou domínio do servidor
             username: ${{ secrets.SERVER_USER }}   # Usuário do servidor
             key: ${{ secrets.SSH_PRIVATE_KEY }}     # Chave privada para acessar o servidor
             script: |
