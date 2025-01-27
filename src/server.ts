@@ -15,6 +15,9 @@ const PORT = process.env.PORT
 console.log(accountSid, authToken)
 
 app.get('/', (req, res) => {
+  const leadData = req.body;
+
+  console.log()
 
   const whatsappMessage = `🚨 *Novo lead recebido!* 🚨\n\n`
 
