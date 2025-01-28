@@ -38,5 +38,5 @@ jobs:
             script: |
               git pull
               npm install
-              npx tsx
-              pm2 restart 0 --watch
+              npx tsc
+              pm2 restart webhooks-leads-cpcon --watch
