@@ -36,7 +36,8 @@ jobs:
             username: ${{ secrets.SERVER_USER }}
             key: ${{ secrets.SSH_PRIVATE_KEY }}
             script: |
+              cd /var/www/my-server/webHookLeadsCpcon/
               git pull origin main
               npm install
-              npx tsc
+              npm run build
               pm2 restart webhook-leads-cpcon --watch
