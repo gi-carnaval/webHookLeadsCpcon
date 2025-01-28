@@ -15,13 +15,21 @@ const PORT = process.env.PORT
 console.log(accountSid, authToken)
 
 app.post('/', (req, res) => {
-  const leadData = req.body;
+  console.log("req.body: ", req)
+  // const decodedData = decodeURIComponent(req.body);
 
-  console.log(leadData)
+  // const params = new URLSearchParams(decodedData);
+  // const formData: Record<string, string> = {};
+  // for (const [key, value] of params.entries()) {
+  //   // Aqui cria-se uma estrutura de chave-valor
+  //   formData[key] = value;
+  // }
 
-  const whatsappMessage = `🚨 *Novo lead recebido!* 🚨\n\n`
+  // console.log(formData)
 
-  res.send("Hello World").status(200)
+  // const whatsappMessage = `🚨 *Novo lead recebido!* 🚨\n\n`
+
+  res.send("Hello").status(200)
 })
 
 // Endpoint do Webhook
