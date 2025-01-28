@@ -39,4 +39,4 @@ jobs:
               git pull
               npm install
               npx tsc
-              pm2 restart webhooks-leads-cpcon --watch
+              pm2 restart webhook-leads-cpcon --watch
