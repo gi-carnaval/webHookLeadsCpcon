@@ -4,6 +4,7 @@ import twilio from "twilio";
 import 'dotenv/config'
 
 const app = express();
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // Credenciais do Twilio
@@ -15,7 +16,7 @@ const PORT = process.env.PORT
 console.log(accountSid, authToken)
 
 app.post('/', (req, res) => {
-  console.log("req.body: ", req)
+  console.log("req.body: ", req.body)
   // const decodedData = decodeURIComponent(req.body);
 
   // const params = new URLSearchParams(decodedData);
