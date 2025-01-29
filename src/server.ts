@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express'
 import bodyParser from 'body-parser'
 import twilio from "twilio";
 import 'dotenv/config'
+import { ContactFormBrasil } from './types/forms';
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -17,20 +18,30 @@ console.log(accountSid, authToken)
 
 app.post('/', (req, res) => {
   console.log("req.body: ", req.body)
-  // const decodedData = decodeURIComponent(req.body);
 
-  // const params = new URLSearchParams(decodedData);
-  // const formData: Record<string, string> = {};
-  // for (const [key, value] of params.entries()) {
-  //   // Aqui cria-se uma estrutura de chave-valor
-  //   formData[key] = value;
-  // }
+  const formData: ContactFormBrasil = req.body
 
-  // console.log(formData)
+  const whatsappMessage = `🚨 *Novo lead recebido!* 🚨\n\n`
+    + `*Nome:* ${formData['Nome do Contato']}\n`
+    + `*E-mail:* ${formData.email}\n`
+    + `*Telefone:* ${formData.telefone}\n`
+    + `*Objetivo:* ${formData.objetivo}\n\n`
+    + `📌 Entre em contato com o lead o mais rápido possível!`;
 
-  // const whatsappMessage = `🚨 *Novo lead recebido!* 🚨\n\n`
-
-  res.send("Hello").status(200)
+  client.messages
+    .create({
+      from: 'whatsapp:+14155238886',
+      body: whatsappMessage,
+      to: 'whatsapp:+5514981668995'
+    })
+    .then(() => {
+      console.log('Mensagem enviada com sucesso ao comercial.');
+      res.status(200).send('Mensagem enviada com sucesso.');
+    })
+    .catch((error: any) => {
+      console.error('Erro ao enviar mensagem:', error);
+      res.status(500).send('Erro ao enviar mensagem.');
+    })
 })
 
 // Endpoint do Webhook
