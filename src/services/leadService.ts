@@ -1,5 +1,5 @@
-import { pb } from "../config/pocketbase";
-import { LeadProps } from "../types/leads";
+import { pb } from "../config/pocketbase.js";
+import { LeadProps } from "../types/leads.js";
 
 const { SUPER_USER_EMAIL, SUPER_USER_PASSWORD } = process.env;
 

@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import whatsappService from "../services/whatsappService";
-import leadService from "../services/leadService";
-import { LeadProps } from "../types/leads";
-import { mapFormData } from "../types/forms";
-import notificationService from "../services/notificationService";
+import whatsappService from "../services/whatsappService.js";
+import leadService from "../services/leadService.js";
+import { LeadProps } from "../types/leads.js";
+import { mapFormData } from "../types/forms.js";
+import notificationService from "../services/notificationService.js";
 
 const RECEIVERS_NUMBERS = ['+5514981668995', '+5514997108384']
 

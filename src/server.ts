@@ -1,7 +1,7 @@
 import express from 'express'
 import bodyParser from 'body-parser'
 import 'dotenv/config'
-import webhookController from './controller/webhookController';
+import webhookController from './controller/webhookController.js';
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));

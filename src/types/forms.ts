@@ -1,4 +1,4 @@
-import { LeadProps } from "./leads";
+import { LeadProps } from "./leads.js";
 
 export const mapFormData = (form_id: string, data: Record<string, string>): LeadProps => {
   if (form_id == "form_br") {

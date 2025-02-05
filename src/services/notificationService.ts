@@ -1,4 +1,4 @@
-import { LeadProps } from "../types/leads";
+import { LeadProps } from "../types/leads.js";
 
 const formatLeadMessage = (lead: LeadProps, formId: string): string => {
   const formName = formId == "form_br" ? "Contato Brasil" : "Contact USA"
