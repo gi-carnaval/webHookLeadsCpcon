@@ -1,27 +1,36 @@
-export interface ContactFormBrasil {
-  empresa: string;
-  "Nome do Contato": string;
-  email: string;
-  telefone: string;
-  objetivo: string;
-  "objetivo (Outro)"?: string;
-  pergunta: string;
-  "como chegou a CPCON?": string;
-  "foi indicado?"?: string;
-  "como chegou (Outros)"?: string;
-  "Sem rótulo field_26c983f"?: string;
-  utm_source?: string;
-  utm_campaign?: string;
-  utm_content?: string;
-  utm_term?: string;
-  gclid?: string;
-  handl_landing_page?: string;
-  Data: string;
-  Horário: string;
-  "URL da página": string;
-  "Agente de usuário": string;
-  "IP remoto": string;
-  "Desenvolvido por": string;
-  form_id: string;
-  form_name: string;
+import { LeadProps } from "./leads";
+
+export const mapFormData = (form_id: string, data: Record<string, string>): LeadProps => {
+  if (form_id == "form_br") {
+    return mapFormDataToBrazil(data)
+  }
+  return mapFormDataToUSA(data)
+
+}
+
+export const mapFormDataToBrazil = (data: Record<string, string>): LeadProps => ({
+  company: data["empresa"],
+  name: data['Nome do Contato'],
+  business_email: data["email"],
+  phone_number: data["telefone"],
+  objective: data["objetivo"],
+  solution: data["objetivo (Outro)"],
+  comments: data["pergunta"],
+  from_form: "Contato - Brasil"
+});
+
+export const mapFormDataToUSA = (data: Record<string, string>): LeadProps => {
+  return (
+    {
+      company: data["Company"],
+      name: data['Name'],
+      business_email: data["Business_Email"],
+      phone_number: data['Telephone_Number'],
+      objective: data["Solutions"],
+      solution: data["Select"],
+      comments: data["Comments"],
+      job_title: data["Job_Title"],
+      region: data["Region"],
+      from_form: "Contact - USA"
+    });
 }
