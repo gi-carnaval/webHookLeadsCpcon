@@ -35,13 +35,13 @@ export const mapFormData = (form_id: string, data: WebhookData): LeadProps => {
 }
 
 export const mapFormDataToBrazil = (fields: Record<string, WebhookField>): LeadProps => ({
-  company: fields["empresa"].value,
-  name: fields['Nome do Contato'].value,
-  business_email: fields["email"].value,
-  phone_number: fields["telefone"].value,
-  objective: fields["objetivo"].value,
-  solution: fields["objetivo (Outro)"].value,
-  comments: fields["pergunta"].value,
+  company: fields["company"].value,
+  name: fields["name"].value,
+  business_email: fields["business_email"].value,
+  phone_number: fields["telephone_number"].value,
+  objective: fields["objective"].value,
+  solution: fields["solution"].value,
+  comments: fields["comment"].value,
   from_form: "Contato - Brasil"
 });
 
