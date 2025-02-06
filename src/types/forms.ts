@@ -22,6 +22,7 @@ export const mapFormDataToBrazil = (data: Record<string, string>): LeadProps => 
 
 export const mapFormDataToUSA = (data: Record<string, string>): LeadProps => {
   logWebhook(`formData webhook: ${JSON.stringify(data['Telephone'])}`);
+  console.log('formData webhook: ', JSON.stringify(data['Telephone']))
   return (
     {
       company: data["Company"],

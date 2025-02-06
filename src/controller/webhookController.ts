@@ -24,6 +24,7 @@ export const logWebhook = (message: string) => {
 
 const processWebhook = async (req: Request, res: Response) => {
   logWebhook(`Recebido webhook: ${JSON.stringify(req.body)}`);
+  console.log(`Recebido webhook: ${JSON.stringify(req.body)}`)
   const { form_id } = req.query
 
   if (!form_id) {
