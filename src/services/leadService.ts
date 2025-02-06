@@ -42,7 +42,7 @@ const createLead = async (leadData: LeadProps) => {
   };
 
   if (!SUPER_USER_EMAIL || !SUPER_USER_PASSWORD) {
-    return { success: false, error: "Credenciais de superusuário não configuradas." };
+    return { success: false, error: "Credenciais não configuradas." };
   }
 
   try {
