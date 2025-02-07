@@ -24,7 +24,7 @@ export const logWebhook = (message: string) => {
 
 const processWebhook = async (req: Request, res: Response) => {
   logWebhook(`Recebido webhook: ${JSON.stringify(req.body)}`);
-  console.log(`Recebido webhook: ${JSON.stringify(req.body)}\n\n`)
+  console.log("Recebido webhook: ", JSON.stringify(req.body), "\n\n")
   const { form_id } = req.query
 
   if (!form_id) {
@@ -37,7 +37,7 @@ const processWebhook = async (req: Request, res: Response) => {
   const formData: LeadProps = mapFormData(parsedFormId, req.body)
 
   logWebhook(`formData webhook: ${JSON.stringify(formData)}`);
-  console.log(`formData webhook: ${formData}\n\n`)
+  console.log("formData webhook: ", formData, "\n\n")
 
   const lead = await leadService.createLead(formData)
 
