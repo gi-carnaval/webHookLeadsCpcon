@@ -36,7 +36,7 @@ export const mapFormData = (form_id: string, data: WebhookData): LeadProps => {
 
 export const mapFormDataToBrazil = (fields: Record<string, WebhookField>): LeadProps => {
 
-  console.log("Fields no forms.ts: ", fields)
+  console.log(`Fields no forms.ts: ${fields}\n\n`)
 
   return {
     company: fields["company"].value,
