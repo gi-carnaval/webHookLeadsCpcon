@@ -36,7 +36,7 @@ export const mapFormData = (form_id: string, data: WebhookData): LeadProps => {
 
 export const mapFormDataToBrazil = (fields: Record<string, WebhookField>): LeadProps => {
 
-  console.log("Fields no forms.ts: ", fields, "\n\n")
+  console.log("Fields no Br forms.ts: ", fields, "\n\n")
 
   return {
     company: fields["company"].value,
@@ -50,15 +50,18 @@ export const mapFormDataToBrazil = (fields: Record<string, WebhookField>): LeadP
   }
 };
 
-export const mapFormDataToUSA = (fields: Record<string, WebhookField>): LeadProps => ({
-  company: fields["company"].value,
-  name: fields["name"].value,
-  business_email: fields["business_email"].value,
-  phone_number: fields["telephone_number"].value,
-  objective: fields["objective"].value,
-  solution: fields["solution"].value,
-  comments: fields["comment"].value,
-  job_title: fields["job_title"].value,
-  region: fields["region"].value,
-  from_form: "Contact - USA"
-});
+export const mapFormDataToUSA = (fields: Record<string, WebhookField>): LeadProps => {
+  console.log("Fields no USA forms.ts: ", fields, "\n\n")
+  return {
+    company: fields["company"].value,
+    name: fields["name"].value,
+    business_email: fields["business_email"].value,
+    phone_number: fields["telephone_number"].value,
+    objective: fields["objective"].value,
+    solution: fields["solution"].value,
+    comments: fields["comment"].value,
+    job_title: fields["job_title"].value,
+    region: fields["region"].value,
+    from_form: "Contact - USA"
+  }
+};

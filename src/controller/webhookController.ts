@@ -10,13 +10,11 @@ import { fileURLToPath } from "url";
 
 const RECEIVERS_NUMBERS = ['+5514981668995', '+5514997108384']
 
-// Corrigir __dirname para ES Modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const logFilePath = path.join(__dirname, "..", "logs", "webhook.log");
 
-// Função para salvar logs em um arquivo
 export const logWebhook = (message: string) => {
   const logMessage = `[${new Date().toISOString()}] ${message}\n`;
   fs.appendFileSync(logFilePath, logMessage, "utf8");
@@ -25,6 +23,7 @@ export const logWebhook = (message: string) => {
 const processWebhook = async (req: Request, res: Response) => {
   logWebhook(`Recebido webhook: ${JSON.stringify(req.body)}`);
   console.log("Recebido webhook: ", JSON.stringify(req.body), "\n\n")
+
   const { form_id } = req.query
 
   if (!form_id) {
