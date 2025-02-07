@@ -40,7 +40,7 @@ export const mapFormDataToBrazil = (fields: Record<string, WebhookField>): LeadP
   business_email: fields["business_email"].value,
   phone_number: fields["telephone_number"].value,
   objective: fields["objective"].value,
-  solution: fields["solution"].value,
+  solution: fields["solution"].value || "",
   comments: fields["comment"].value,
   from_form: "Contato - Brasil"
 });

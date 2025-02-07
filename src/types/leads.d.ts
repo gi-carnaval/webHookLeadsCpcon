@@ -6,7 +6,7 @@ export interface LeadProps {
   job_title?: string;
   region?: string;
   objective: string;
-  solution: string | undefined;
+  solution?: string | undefined;
   comments: string;
   from_form: string;
 }
