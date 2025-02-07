@@ -34,16 +34,21 @@ export const mapFormData = (form_id: string, data: WebhookData): LeadProps => {
 
 }
 
-export const mapFormDataToBrazil = (fields: Record<string, WebhookField>): LeadProps => ({
-  company: fields["company"].value,
-  name: fields["name"].value,
-  business_email: fields["business_email"].value,
-  phone_number: fields["telephone_number"].value,
-  objective: fields["objective"].value,
-  solution: fields["solution"].value || "",
-  comments: fields["comment"].value,
-  from_form: "Contato - Brasil"
-});
+export const mapFormDataToBrazil = (fields: Record<string, WebhookField>): LeadProps => {
+
+  console.log("Fields no forms.ts: ", fields)
+
+  return {
+    company: fields["company"].value,
+    name: fields["name"].value,
+    business_email: fields["business_email"].value,
+    phone_number: fields["telephone_number"].value,
+    objective: fields["objective"].value,
+    solution: fields["solution"].value || "",
+    comments: fields["comment"].value,
+    from_form: "Contato - Brasil"
+  }
+};
 
 export const mapFormDataToUSA = (fields: Record<string, WebhookField>): LeadProps => ({
   company: fields["company"].value,

@@ -37,6 +37,7 @@ const processWebhook = async (req: Request, res: Response) => {
   const formData: LeadProps = mapFormData(parsedFormId, req.body)
 
   logWebhook(`formData webhook: ${JSON.stringify(formData)}`);
+  console.log(`formData webhook: ${formData}`)
 
   const lead = await leadService.createLead(formData)
 
