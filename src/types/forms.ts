@@ -1,7 +1,6 @@
-import { logWebhook } from "../controller/webhookController.js";
 import { LeadProps } from "./leads.js";
 
-type WebhookField = {
+export type WebhookField = {
   id: string;
   type: string;
   title: string;
@@ -10,7 +9,7 @@ type WebhookField = {
   required: string;
 };
 
-type WebhookData = {
+export type WebhookData = {
   form: {
     id: string;
     name: string;
@@ -26,42 +25,8 @@ type WebhookData = {
   };
 };
 
-export const mapFormData = (form_id: string, data: WebhookData): LeadProps => {
-  if (form_id == "form_br") {
-    return mapFormDataToBrazil(data.fields)
-  }
-  return mapFormDataToUSA(data.fields)
-
+export interface MapFormDataReturn {
+  success: boolean;
+  error: boolean;
+  data: LeadProps | null;
 }
-
-export const mapFormDataToBrazil = (fields: Record<string, WebhookField>): LeadProps => {
-
-  console.log("Fields no Br forms.ts: ", fields, "\n\n")
-
-  return {
-    company: fields["company"].value,
-    name: fields["name"].value,
-    business_email: fields["business_email"].value,
-    phone_number: fields["telephone_number"].value,
-    objective: fields["objective"].value,
-    solution: fields["solution"].value || "",
-    comments: fields["comment"].value,
-    from_form: "Contato - Brasil"
-  }
-};
-
-export const mapFormDataToUSA = (fields: Record<string, WebhookField>): LeadProps => {
-  console.log("Fields no USA forms.ts: ", fields, "\n\n")
-  return {
-    company: fields["company"].value,
-    name: fields["name"].value,
-    business_email: fields["business_email"].value,
-    phone_number: fields["telephone_number"].value,
-    objective: fields["objective"].value,
-    solution: fields["solution"].value,
-    comments: fields["comment"].value,
-    job_title: fields["job_title"].value,
-    region: fields["region"].value,
-    from_form: "Contact - USA"
-  }
-};

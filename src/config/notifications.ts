@@ -1,0 +1,4 @@
+export const NOTIFICATION_NUMBERS = [
+  '+5514981668995',
+  '+5514997300621'
+]
