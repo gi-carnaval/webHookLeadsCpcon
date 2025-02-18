@@ -1,7 +1,7 @@
 import leadService from "./leadService.js";
 
 const processDeal = async (data: any) => {
-  console.log(data)
+  console.log("Data aqui: ", data)
   const mappedData = {
     name: data.Title,
     email: data.CustomerEmail,

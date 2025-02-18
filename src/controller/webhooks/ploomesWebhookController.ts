@@ -9,6 +9,8 @@ const processPloomesWebhook = async (req: Request, res: Response) => {
     const result = await ploomesWebhookService.processDeal(req.body)
     if (!result.success) return handleError(res, "Error processing deal", `❌ ${result.error}`)
 
+      console.log("Result: ", result.lead)
+
     res.status(200).json({ message: "Negócio do Ploomes processado com sucesso" })
   } catch (error) {
     handleError(res, "Internal Server Error", `❌ Erro inesperado (Ploomes): ${error}`);
