@@ -1,19 +1,34 @@
 import { LeadProps } from "../types/leads.js";
+import { FormatLeadMessageProps } from "../types/notification.js";
 
-const formatLeadMessage = (lead: LeadProps, formId: string, leadId: string): { formName: string, message: string } => {
-  const formName = formId == "form_br" ? "Contato Brasil" : "Contact USA"
-  // const message = (lead.name && `*Nome:* ${lead.name}`)
-  //   + (lead.business_email && `\n*E-mail:* ${lead.business_email}`)
-  //   + (lead.phone_number && `\n*Telefone:* ${lead.phone_number}`)
-  //   + (lead.objective && `\n*Objetivo:* ${lead.objective}`)
-  //   + (lead.solution && `\n*Objetivo (Outro):* ${lead.solution}`)
-  //   + (lead.comments && `\n*Pergunta:* ${lead.comments}`)
+const formTitles = {
+  form_br: 'Contato Brasil',
+  form_usa: 'Contact USA',
+  form_ploomes: 'Ploomes'
+} as const;
 
-  const message = `🔗Link: https://leads-manager.grupocpcon.com/dashboard/lead/${leadId}`
+type FormId = keyof typeof formTitles;
+type FormTitle = (typeof formTitles)[FormId]
+
+function getFormTitle(formId: FormId): FormTitle {
+  return formTitles[formId]
+}
+
+const formatLeadMessage = (lead: LeadProps, formId: string, leadId: string): FormatLeadMessageProps => {
+  const formName = getFormTitle(formId as FormId)
+
+  const fields = {
+    name: lead.name || 'Não informado',
+    email: lead.business_email || 'Não informado',
+    phone: lead.phone_number || 'Não informado',
+    objective: lead.objective || 'Não informado',
+    comments: lead.comments || 'Não informado',
+    link: `https://leads-manager.grupocpcon.com/dashboard/lead/${leadId}`
+  }
 
   return {
     formName,
-    message
+    fields
   }
 }
 

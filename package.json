@@ -17,6 +17,7 @@
     "body-parser": "^1.20.3",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
+    "ky": "^1.7.5",
     "pocketbase": "^0.25.1",
     "twilio": "^5.4.2"
   },
@@ -26,7 +27,7 @@
     "concurrently": "^9.1.2",
     "nodemon": "^3.1.9",
     "ts-node": "^10.9.2",
-    "tsx": "^4.19.2",
+    "tsx": "^3.12.10",
     "typescript": "^5.7.3"
   }
 }

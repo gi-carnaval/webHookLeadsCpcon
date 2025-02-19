@@ -13,8 +13,10 @@ export const logWebhook = (message: string) => {
   fs.appendFileSync(logFilePath, logMessage, "utf8")
 }
 
-export const handleError = (res: Response, message: string, logMessage: string) => {
-  logWebhook(logMessage);
-  console.error(logMessage)
-  res.status(200).send(message)
+export const handleError = (res: Partial<Response>, message: string, logMessage: string) => {
+  if (res.status) {
+    logWebhook(logMessage);
+    console.error(logMessage)
+    res.status(200).send(message)
+  }
 }

@@ -48,11 +48,12 @@ const createLead = async (leadData: LeadProps) => {
   try {
     const { success, error } = await authenticateAdmin(SUPER_USER_EMAIL, SUPER_USER_PASSWORD);
     if (!success) {
-      return { success: false, error };
+      return { success: false, lead: null, error };
     }
 
     const lead = await pb.collection("leads").create(data);
-    return { success: true, data: lead };
+    return { success: true, data: lead, error: null };
+
   } catch (error: unknown) {
     return { success: false, error: error instanceof Error ? `Erro ao cadastrar lead: ${error.message}` : "Erro desconhecido ao cadastrar lead." };
   }

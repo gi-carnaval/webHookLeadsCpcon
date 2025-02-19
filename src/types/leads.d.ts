@@ -9,4 +9,5 @@ export interface LeadProps {
   solution?: string | undefined;
   comments: string;
   from_form: string;
+  responsible_region: string
 }

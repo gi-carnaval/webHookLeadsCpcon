@@ -1,6 +1,6 @@
 import { Router } from "express";
-import elementorWebhookController from "../controller/webhooks/elementorWebhookController.js";
-import ploomesWebhookController from "../controller/webhooks/ploomesWebhookController.js";
+import elementorWebhookController from "../controller/webhooks/elementor-webhook-controller.js";
+import ploomesWebhookController from "../controller/webhooks/ploomes-webhook-controller.js";
 
 const router = Router();
 

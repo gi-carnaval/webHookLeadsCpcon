@@ -1,5 +1,14 @@
-import { logWebhook } from "../controller/webhookController.js";
 import { MapFormDataReturn, WebhookData, WebhookField } from "../types/forms.js";
+import { logWebhook } from "../utils/logger.js";
+
+const processLead = async (formId: string, data: WebhookData) => {
+  const formFormatted = mapFormData(formId, data)
+  if (!formFormatted.success || !formFormatted.data) {
+    return { success: false, error: "Erro ao mapear dados do formulário" };
+  }
+
+  return { success: true, lead: formFormatted.data }
+}
 
 export const mapFormData = (form_id: string, data: WebhookData): MapFormDataReturn => {
   if (form_id == "form_br") {
@@ -9,8 +18,6 @@ export const mapFormData = (form_id: string, data: WebhookData): MapFormDataRetu
 }
 
 export const mapFormDataToBrazil = (fields: Record<string, WebhookField>): MapFormDataReturn => {
-
-  console.log("Fields no Br forms.ts: ", fields, "\n\n")
   logWebhook(`Fields no Br forms.ts: ${JSON.stringify(fields)}\n\n`);
   try {
     return {
@@ -22,7 +29,8 @@ export const mapFormDataToBrazil = (fields: Record<string, WebhookField>): MapFo
         objective: fields["objective"].value,
         solution: fields["solution"].value || "",
         comments: fields["comment"].value,
-        from_form: "Contato - Brasil"
+        from_form: "Contato - Brasil",
+        responsible_region: "br"
       },
       error: false,
       success: true
@@ -37,7 +45,6 @@ export const mapFormDataToBrazil = (fields: Record<string, WebhookField>): MapFo
 };
 
 export const mapFormDataToUSA = (fields: Record<string, WebhookField>): MapFormDataReturn => {
-  console.log("Fields no USA forms.ts: ", fields, "\n\n")
   logWebhook(`Fields no USA forms.ts: ${JSON.stringify(fields)}\n\n`);
 
   try {
@@ -52,7 +59,8 @@ export const mapFormDataToUSA = (fields: Record<string, WebhookField>): MapFormD
         comments: fields["comment"].value,
         job_title: fields["job_title"].value,
         region: fields["region"].value,
-        from_form: "Contact - USA"
+        from_form: "Contact - USA",
+        responsible_region: "usa"
       },
       success: true,
       error: false
@@ -65,3 +73,5 @@ export const mapFormDataToUSA = (fields: Record<string, WebhookField>): MapFormD
     }
   }
 };
+
+export default { processLead }
