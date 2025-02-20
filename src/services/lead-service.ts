@@ -24,7 +24,8 @@ const createLead = async (leadData: LeadProps) => {
     solution,
     comments,
     region,
-    from_form
+    from_form,
+    responsible_region
   } = leadData;
 
   const data = {
@@ -38,7 +39,8 @@ const createLead = async (leadData: LeadProps) => {
     solution,
     comments,
     "contact_status": "pending",
-    from_form
+    from_form,
+    responsible_region
   };
 
   if (!SUPER_USER_EMAIL || !SUPER_USER_PASSWORD) {

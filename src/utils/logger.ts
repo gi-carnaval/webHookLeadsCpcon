@@ -10,6 +10,7 @@ const logFilePath = path.join(__dirname, "../..", "logs", "webhook.log")
 
 export const logWebhook = (message: string) => {
   const logMessage = `[${new Date().toISOString()}] ${message}\n`;
+  console.log(logMessage)
   fs.appendFileSync(logFilePath, logMessage, "utf8")
 }
 
